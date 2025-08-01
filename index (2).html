@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+</head>
+<body>
+    <h1>Employee Details</h1>
+    <table border="1">
+        <tr>
+            <th>Emp No</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Designation</th>
+            <th>Actions</th>
+        </tr>
+        {% for emp in employees %}
+        <tr>
+            <td>{{ emp[0] }}</td>
+            <td>{{ emp[1] }}</td>
+            <td>{{ emp[2] }}</td>
+            <td>{{ emp[3] }}</td>
+            <td>
+                <a href="/edit/{{ emp[0] }}">Edit</a> |
+                <a href="/delete/{{ emp[0] }}" onclick="return confirm('Are you sure?')">Delete</a> |
+                <a href="/salary/{{ emp[0] }}"><button type="button">Salary Slip</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add New Employee</h2>
+    <form method="post" action="/add">
+        Emp No: <input type="number" name="empno" required><br>
+        Name: <input type="text" name="name" required><br>
+        Salary: <input type="number" name="salary" required><br>
+        Designation: <input type="text" name="designation" required><br>
+        <button type="submit">Add Employee</button>
+    </form>
+</body>
+</html>
